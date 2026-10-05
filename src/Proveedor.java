@@ -5,7 +5,7 @@ public class Proveedor {
 
     public Proveedor(String nombreRepartidor, String telefono, String nombreEmpresa) {
         this.nombreRepartidor = nombreRepartidor;
-        this.telefono = telefono;
+        setTelefono(telefono); // Valida el teléfono al asignarlo
         this.nombreEmpresa = nombreEmpresa;
     }
 
@@ -22,7 +22,13 @@ public class Proveedor {
     }
 
     public void setTelefono(String telefono) {
-        this.telefono = telefono;
+        // Valida 10 dígitos numéricos
+        if (telefono != null && telefono.matches("\\d{10}")) {
+            this.telefono = telefono;
+        } else {
+            System.out.println("[Advertencia] El teléfono debe contener exactamente 10 dígitos numéricos.");
+            this.telefono = "0000000000";
+        }
     }
 
     public String getNombreEmpresa() {

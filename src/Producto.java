@@ -6,8 +6,8 @@ public class Producto {
 
     public Producto(String nombre, int stock, double precioCompra, Proveedor proveedor) {
         this.nombre = nombre;
-        this.stock = stock;
-        this.precioCompra = precioCompra;
+        setStock(stock);
+        setPrecioCompra(precioCompra);
         this.proveedor = proveedor;
     }
 
@@ -24,7 +24,12 @@ public class Producto {
     }
 
     public void setStock(int stock) {
-        this.stock = stock;
+        if (stock >= 0) {
+            this.stock = stock;
+        } else {
+            System.out.println("[Advertencia] El stock no puede ser negativo. Se registrará en 0.");
+            this.stock = 0;
+        }
     }
 
     public double getPrecioCompra() {
@@ -32,7 +37,12 @@ public class Producto {
     }
 
     public void setPrecioCompra(double precioCompra) {
-        this.precioCompra = precioCompra;
+        if (precioCompra >= 0) {
+            this.precioCompra = precioCompra;
+        } else {
+            System.out.println("[Advertencia] El precio de compra no puede ser negativo. Se registrará en 0.0.");
+            this.precioCompra = 0.0;
+        }
     }
 
     public Proveedor getProveedor() {

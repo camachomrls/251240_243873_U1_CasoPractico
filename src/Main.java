@@ -26,11 +26,23 @@ public class Main {
                     System.out.print("Nombre del producto: ");
                     String nombreProd = entrada.nextLine();
 
-                    System.out.print("Cantidad en stock entrante: ");
-                    int stock = entrada.nextInt();
+                    int stock;
+                    do {
+                        System.out.print("Cantidad en stock entrante (>= 0): ");
+                        stock = entrada.nextInt();
+                        if (stock < 0) {
+                            System.out.println("[Error] El stock no puede ser negativo. Intenta de nuevo.");
+                        }
+                    } while (stock < 0);
 
-                    System.out.print("Precio de compra acordado: ");
-                    double precio = entrada.nextDouble();
+                    double precio;
+                    do {
+                        System.out.print("Precio de compra acordado (>= 0): ");
+                        precio = entrada.nextDouble();
+                        if (precio < 0) {
+                            System.out.println("[Error] El precio no puede ser negativo. Intenta de nuevo.");
+                        }
+                    } while (precio < 0);
                     entrada.nextLine();
 
                     System.out.println("\n DATOS DEL PROVEEDOR");
@@ -40,8 +52,14 @@ public class Main {
                     System.out.print("Nombre del repartidor: ");
                     String repartidor = entrada.nextLine();
 
-                    System.out.print("Teléfono de contacto: ");
-                    String telefono = entrada.nextLine();
+                    String telefono;
+                    do {
+                        System.out.print("Teléfono de contacto (10 dígitos): ");
+                        telefono = entrada.nextLine();
+                        if (!telefono.matches("\\d{10}")) {
+                            System.out.println("[Error] El número debe tener 10 dígitos numéricos.");
+                        }
+                    } while (!telefono.matches("\\d{10}"));
 
                     Proveedor prov = new Proveedor(repartidor, telefono, empresa);
                     Producto prod = new Producto(nombreProd, stock, precio, prov);
@@ -66,8 +84,14 @@ public class Main {
                     System.out.print("Nombre del nuevo repartidor: ");
                     String nRepartidor = entrada.nextLine();
 
-                    System.out.print("Nuevo teléfono de contacto: ");
-                    String nTelefono = entrada.nextLine();
+                    String nTelefono;
+                    do {
+                        System.out.print("Nuevo teléfono de contacto (10 dígitos): ");
+                        nTelefono = entrada.nextLine();
+                        if (!nTelefono.matches("\\d{10}")) {
+                            System.out.println("[Error] El número debe tener exactamente 10 dígitos numéricos.");
+                        }
+                    } while (!nTelefono.matches("\\d{10}"));
 
                     Proveedor nuevoProv = new Proveedor(nRepartidor, nTelefono, nEmpresa);
 
